@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 
-function Message() {
-  return (
-    <main className="messages">
+class Message extends Component {
+  render(){
+    const message = this.props.message;
+    console.log(message)
+    return (
       <div className="message">
-        <span className="message-username">Anonymous1</span>
-        <span className="message-content">I won't be impressed with technology until I can download food.</span>
+        <span className="message-username">{message.username}</span>
+        <span className="message-content">{message.content}</span>
       </div>
-      <div className="message system">
-        Anonymous1 changed their name to nomnom.
-      </div>
-    </main>
-  );
+    );
+  }
 }
 
 export default Message;
