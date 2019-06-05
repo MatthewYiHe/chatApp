@@ -7,13 +7,16 @@ class ChatBar extends Component {
       const content = event.target.value
       if (event.key === "Enter" && content.length !== 0) {
         this.props.newMessage(userName, content)
+        this.props.wsMessage(userName, content)
         event.target.value = ""
       }
-      // I dont need anything after "if", right?
     }
     return (
       <footer className="chatbar">
-        <input className="chatbar-username" placeholder="Your Name (Optional)" defaultValue={userName} />
+        <input className="chatbar-username"
+               placeholder="Your Name (Optional)"
+               defaultValue={userName}
+               />
         <input className="chatbar-message"
                placeholder="Type a message and hit ENTER"
                onKeyPress={submitFunc}
