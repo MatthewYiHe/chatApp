@@ -4,7 +4,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
 
     body {
-      background: white;
+      background: #e6e6e6;
       color: black;
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
@@ -25,6 +25,7 @@
     .chatbar-message,
     .chatbar-username {
       border: 1px solid black;
+      border-radius: 5px;
       display: block;
       height: 40px;
       line-height: 40px;
@@ -52,7 +53,6 @@
 
     .message-content,
     .message-username {
-      overflow: hidden;
       margin: 5px;
       padding: 0 10px;
     }
@@ -69,7 +69,7 @@
     .navbar {
       background: tomato;
       border-bottom: 1px solid black;
-      height: 60px;
+      height: 70px;
       left: 0;
       padding: 0 10px;
       position: fixed;
@@ -78,13 +78,26 @@
     }
 
     .navbar-brand {
-      color: inherit;
+      color: white;
       display: block;
       float: left;
       font-weight: 700;
-      font-size: 28px;
-      height: 60px;
-      line-height: 60px;
+      font-size: 35px;
+      height: 70px;
+      line-height: 70px;
       padding: 0 10px;
       text-decoration: none;
+    }
+
+    .text{
+      color: white;
+      padding-left: 10px;
+      line-height: 70px;
+    }
+
+    .usernumber {
+      color: white;
+      float: right;
+      line-height: 70px;
+      padding: 0 10px;
     }

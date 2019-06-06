@@ -19,6 +19,10 @@ const wss = new SocketServer({ server });
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  console.log(wss.clients.size)
+  wss.clients.forEach(socket => {
+      socket.send (wss.clients.size);
+    });
 
   ws.on('message', (message) => {
     const obj = JSON.parse(message);
@@ -28,6 +32,7 @@ wss.on('connection', (ws) => {
       console.log('obj',obj);
     }
     if (obj.type === "postNotification"){
+      obj.id = uuid();
       obj.type = "incomingNotification"
       console.log('obj',obj);
     }
@@ -40,7 +45,12 @@ wss.on('connection', (ws) => {
 
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on('close', () => {
+    console.log('Client disconnected')
+    wss.clients.forEach(socket => {
+      socket.send (wss.clients.size);
+    });
+  });
 });
 
 

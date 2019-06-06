@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
                   currentUser: {name: "Anonymous"}, // optional. if currentUser is not defined, it means the user is Anonymous
                   messages: [],
-                  notification: []
+                  numberOfUsers: 0
                 };
   }
 
@@ -23,7 +23,11 @@ class App extends Component {
     }
     //get message from the server and turn it to object.
     this.socket.onmessage = (message) => {
+      console.log(message.data)
       let obj = JSON.parse(message.data);
+      if (typeof(obj)==="number"){
+        this.setState({numberOfUsers: obj})
+      }
       if (obj.type === 'incomingMessage'){
         //put new id, username, content to state and reset state
         const newMessage = {id: obj.id , username: obj.username, content: obj.content};
@@ -31,16 +35,17 @@ class App extends Component {
         this.setState({messages: newMessages})
       }
       if (obj.type === 'incomingNotification'){
-        const newNotification = this.state.notification.concat(obj.content)
-        this.setState({notification: newNotification})
+        const newNotification = {id: obj.id , notification: obj.content};
+        const newNotifications = this.state.messages.concat(newNotification)
+        this.setState({messages: newNotifications})
       }
     }
   }
 
   addMessage = (username, message) => {
     //send message to server
+    message = message.replace('\\', '\\\\');
     this.socket.send(`{"type": "postMessage","username":"${username}", "content":"${message}"}`)
-
   }
 
   //function to update the username
@@ -52,21 +57,14 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(){
-    // console.log('new user', this.state.currentUser.name)
-    // console.log('state notification', this.state.notification)
-  }
-
   render() {
     return (
       <div>
-        <NavBar />
-        <MessageList messages={this.state.messages}
-                     notifications={this.state.notification} />
+        <NavBar number={this.state.numberOfUsers} />
+        <MessageList messages={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser.name}
                  newMessage={this.addMessage}
                  editUsername={this.editUsername}
-                 // content={this.state.messages.content}
                  />
       </div>
     );

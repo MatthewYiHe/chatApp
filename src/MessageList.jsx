@@ -5,13 +5,16 @@ import MessageNotification from './MessageNotification.jsx';
 class MessageList extends Component {
   render(){
     const messages = this.props.messages;
-    const message = messages.map(item=> <Message key={item.id} message={item} />);
-    const notifications = this.props.notifications;
-    const notification = notifications.map(item=> MessageNotification(item));
+    const message = messages.map(item=> {
+      if (item.username){
+        return <Message key={item.id} message={item} />
+      } else {
+        return <MessageNotification key={item.id} notification={item.notification} />
+      }
+    });
     return (
       <main className="messages">
         {message}
-        {notification}
       </main>
     );
   }
