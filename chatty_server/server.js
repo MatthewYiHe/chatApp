@@ -21,11 +21,20 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
 
   ws.on('message', (message) => {
-    console.log('got a message: ', message);
+    const obj = JSON.parse(message);
+    if (obj.type === "postMessage"){
+      obj.id = uuid();
+      obj.type = "incomingMessage"
+      console.log('obj',obj);
+    }
+    if (obj.type === "postNotification"){
+      obj.type = "incomingNotification"
+      console.log('obj',obj);
+    }
     // this also works with function below
     // wss.broadcast(message);
     wss.clients.forEach(socket => {
-      socket.send (`{"id":"${uuid()}", ${message}}`)
+      socket.send (JSON.stringify(obj));
     });
   });
 

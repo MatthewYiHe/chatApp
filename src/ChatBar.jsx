@@ -8,6 +8,9 @@ class ChatBar extends Component {
       if (event.key === "Enter" && userName.length !== 0) {
         this.props.editUsername(userName)
       }
+      if (event.key === "Enter" && userName.length === 0) {
+        this.props.editUsername("Anonymous")
+      }
     }
     const submitFunc = (event)=>{
       const content = event.target.value

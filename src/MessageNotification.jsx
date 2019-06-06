@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 
 
-class MessageNotification extends Component {
-  render(){
-    return (
-      <div className="message system">
-        Anonymous1 changed their name to nomnom.
-      </div>
-    );
-  }
+function MessageNotification(notification) {
+  return (
+    <div className="message system">
+      {notification}
+    </div>
+  );
 }
 
 export default MessageNotification;
