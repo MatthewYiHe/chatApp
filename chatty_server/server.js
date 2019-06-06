@@ -14,16 +14,16 @@ const server = express()
 // Create the WebSockets server
 const wss = new SocketServer({ server });
 
-// Set up a callback that will run when a client connects to the server
-// When a client connects they are assigned a socket, represented by
-// the ws parameter in the callback.
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
   console.log(wss.clients.size)
+  //when new user connects, send the number of client to front end
   wss.clients.forEach(socket => {
       socket.send (wss.clients.size);
     });
 
+  //take incoming message and insert a uuid to them and send them back
   ws.on('message', (message) => {
     const obj = JSON.parse(message);
     if (obj.type === "postMessage"){
@@ -36,7 +36,7 @@ wss.on('connection', (ws) => {
       obj.type = "incomingNotification"
       console.log('obj',obj);
     }
-    // this also works with function below
+    // this also works with  broadcast() function below
     // wss.broadcast(message);
     wss.clients.forEach(socket => {
       socket.send (JSON.stringify(obj));

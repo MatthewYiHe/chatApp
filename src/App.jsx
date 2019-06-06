@@ -21,7 +21,7 @@ class App extends Component {
     this.socket.onopen = ()=>{
       console.log('Connected to server')
     }
-    //get message from the server and turn it to object.
+    //get message from the server and turn it to object. then change the state according the type.
     this.socket.onmessage = (message) => {
       console.log(message.data)
       let obj = JSON.parse(message.data);
@@ -42,13 +42,14 @@ class App extends Component {
     }
   }
 
+  //function to send input message to sever
   addMessage = (username, message) => {
-    //send message to server
+    //make sure "\" will not crush the sever
     message = message.replace('\\', '\\\\');
     this.socket.send(`{"type": "postMessage","username":"${username}", "content":"${message}"}`)
   }
 
-  //function to update the username
+  //function to send new username to sever
   editUsername = (username) => {
     const preUsername = this.state.currentUser.name
     this.setState({currentUser: {name: username}})
