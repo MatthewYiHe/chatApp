@@ -24,17 +24,21 @@ class App extends Component {
     }
   }
 
-  addMessage(username, message){
-    // Add a new message to the list of messages in the data store
-    const newMessage = {id: generateRandomId() , username: username, content: message};
-    const newMessages = this.state.messages.concat(newMessage)
-    // Update the state of the app component.
-    // Calling setState will trigger a call to render() in App and all child components.
-    this.setState({messages: newMessages})
+  addMessage = (username, message)=>{
+    //send message to server
+    this.socket.send(`"username":"${username}", "content":"${message}"`)
+    //get message from the server and turn it to object.
+    this.socket.onmessage = (message) => {
+      let obj = JSON.parse(message.data);
+    //put new id, username, content to state and reset state
+      const newMessage = {id: obj.id , username: obj.username, content: obj.content};
+      const newMessages = this.state.messages.concat(newMessage)
+      this.setState({messages: newMessages})
+    }
   }
 
-  addWsMessage = (username, message)=>{
-    this.socket.send(`username: ${username} content: ${message}`)
+  editUsername = (username) => {
+    this.setState({currentUser: {name: username}})
   }
 
   render() {
@@ -44,7 +48,7 @@ class App extends Component {
         <MessageList messages={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser.name}
                  newMessage={this.addMessage}
-                 wsMessage={this.addWsMessage}
+                 editUsername={this.editUsername}
                  // content={this.state.messages.content}
                  />
       </div>
