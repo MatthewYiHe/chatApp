@@ -1,8 +1,13 @@
 # ChattyApp Project
 
-Tweeter is a simple communication application. (6th week of my bootcamp)
+Chatty is a simple communication application. (6th week of my bootcamp)
 
 Chatty will allow users to communicate with each other without having to register accounts. It will use React as well as modern tools for Node including Webpack and Babel.
+
+Stack:
+- Webpack with Babel, JSX, ES6, webpack dev server (comes with boilerplate)
+- WebSockets using Node package ws on the server-side, and native WebSocket on client side
+- ReactJS
 
 ## Final product
 
