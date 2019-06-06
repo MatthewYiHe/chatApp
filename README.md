@@ -6,8 +6,8 @@ Chatty will allow users to communicate with each other without having to registe
 
 ## Final product
 
-!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/tweeter/blob/master/docs/tweeter-home-2.png?raw=true)
-!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/tweeter/blob/master/docs/tweeter-home-1.png?raw=true)
+!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/docs/ChattyApp_1.png?raw=true)
+!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/docs/ChattyApp_2.png?raw=true)
 
 
 ## Getting Started
