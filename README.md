@@ -11,8 +11,8 @@ Stack:
 
 ## Final product
 
-!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/docs/ChattyApp_1.png?raw=true)
-!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/docs/ChattyApp_2.png?raw=true)
+!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/chatty_client/docs/ChattyApp_1.png?raw=true)
+!["screenshot of ChattyApp"](https://github.com/MatthewYiHe/chatApp/blob/master/chatty_client/docs/ChattyApp_2.png?raw=true)
 
 
 ## Getting Started
