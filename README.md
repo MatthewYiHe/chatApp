@@ -38,9 +38,9 @@ Stack:
 - webpack-dev-server
 - react
 - react-dom
-- uuid
 
 
 ### Dependencies for WebSockets server
 - express
 - ws
+- uuid
