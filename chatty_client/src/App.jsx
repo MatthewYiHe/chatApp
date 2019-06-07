@@ -23,7 +23,6 @@ class App extends Component {
     }
     //get message from the server and turn it to object. then change the state according the type.
     this.socket.onmessage = (message) => {
-      console.log(message.data)
       let obj = JSON.parse(message.data);
       if (typeof(obj)==="number"){
         this.setState({numberOfUsers: obj})
@@ -46,6 +45,7 @@ class App extends Component {
   addMessage = (username, message) => {
     //make sure "\" will not crush the sever
     message = message.replace('\\', '\\\\');
+    username = username.replace('\\', '\\\\');
     this.socket.send(`{"type": "postMessage","username":"${username}", "content":"${message}"}`)
   }
 

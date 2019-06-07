@@ -4,7 +4,7 @@ import MessageNotification from './MessageNotification.jsx';
 
 class MessageList extends Component {
   render(){
-    const messages = this.props.messages;
+    const {messages} = this.props;
     //check it the incoming are messages or notifications
     const message = messages.map(item=> {
       if (item.username){

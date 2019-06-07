@@ -12,7 +12,7 @@ class ChatBar extends Component {
         this.props.editUsername("Anonymous")
       }
     }
-    const submitFunc = (event)=>{
+    const sendMessageFunc = (event)=>{
       const content = event.target.value
       if (event.key === "Enter" && content.length !== 0) {
         this.props.newMessage(userName, content)
@@ -29,7 +29,7 @@ class ChatBar extends Component {
                />
         <input className="chatbar-message"
                placeholder="Type a message and hit ENTER"
-               onKeyPress={submitFunc}
+               onKeyPress={sendMessageFunc}
                />
       </footer>
     );
