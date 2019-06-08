@@ -18,9 +18,15 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
   console.log(wss.clients.size)
+
+  const color = ['red', 'blue', 'orange', 'black', 'yellow', 'grey'];
+  const ranColor = color[Math.floor(Math.random()*4)];
+  const message = { color: ranColor }
+  ws.send(JSON.stringify(message))
   //when new user connects, send the number of client to front end
   wss.clients.forEach(socket => {
-      socket.send (wss.clients.size);
+      const message = { numberOfUsers: wss.clients.size }
+      socket.send (JSON.stringify(message));
     });
 
   //take incoming message and insert a uuid to them and send them back

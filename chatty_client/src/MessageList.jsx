@@ -8,7 +8,7 @@ class MessageList extends Component {
     //check it the incoming are messages or notifications
     const message = messages.map(item=> {
       if (item.username){
-        return <Message key={item.id} message={item} />
+        return <Message key={item.id} message={item}/>
       } else {
         return <MessageNotification key={item.id} notification={item.notification} />
       }
