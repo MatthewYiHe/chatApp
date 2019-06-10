@@ -15,12 +15,13 @@ const server = express()
 const wss = new SocketServer({ server });
 
 
+const color = ['red', 'blue', 'orange', 'black', 'yellow', 'grey'];
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
   console.log(wss.clients.size)
 
-  const color = ['red', 'blue', 'orange', 'black', 'yellow', 'grey'];
-  const ranColor = color[Math.floor(Math.random()*4)];
+  const ranColor = color[Math.floor(Math.random()*6)];
   const message = { color: ranColor }
   ws.send(JSON.stringify(message))
   //when new user connects, send the number of client to front end

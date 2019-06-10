@@ -27,7 +27,7 @@ class App extends Component {
       console.log("frontend: ",message)
       let obj = JSON.parse(message.data);
       console.log('obj',obj)
-      if (obj.color){
+      if (obj.color && !obj.username){
         this.setState({color: obj.color})
       }
       if (typeof(obj.numberOfUsers)==="number"){
